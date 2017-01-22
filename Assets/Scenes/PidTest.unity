@@ -209,8 +209,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SetPoint: 0
   Kp: 0.1
-  Ki: 0.1
-  Kd: 0.1
+  Ki: 0.01
+  Kd: 0
 --- !u!23 &1419626014
 MeshRenderer:
   m_ObjectHideFlags: 0

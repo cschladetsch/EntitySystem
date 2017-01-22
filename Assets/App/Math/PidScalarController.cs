@@ -11,14 +11,6 @@ namespace App.Math
 		public double Ki = .05;
 		public double Kd = .01;
 
-		public void Construct(double max, double min)
-		{
-			_max = max;
-			_min = min;
-			_pre_error = 0;
-			_integral = 0;
-		}
-
 		/// <summary>
 		/// Calculate output from controller. 
 		/// </summary>
@@ -26,10 +18,10 @@ namespace App.Math
 		/// <param name="pv">the current value, with feedback error</param>
 		/// <param name="dt">time since last calculation</param>
 		/// <returns></returns>
-		private double Calculate(double setpoint, double pv, double dt)
+		private double Calculate(double pv, double dt)
 		{
 			// Calculate error
-			double error = setpoint - pv;
+			double error = SetPoint - pv;
 
 			// Proportional term
 			double Pout = Kp * error;
@@ -60,16 +52,12 @@ namespace App.Math
 		private void FixedUpdate()
 		{
 			double val = (double)transform.position.z;
-			var inc = Calculate(SetPoint, val, Time.fixedDeltaTime);
+			var inc = Calculate(val, Time.fixedDeltaTime);
 
-			Debug.LogFormat("{2}: val:{0}, inc:{1}", val.ToString("F3"), inc.ToString("F3"), _count++);
+			// Debug.LogFormat("{2}: val:{0}, inc:{1}", val.ToString("F3"), inc.ToString("F3"), _count++);
 			transform.position = new Vector3(0,0, (float)(val + inc));
-
-			if (_count == 100)
-				enabled = false;
 		}
 
-		int _count;
         double _max = 100;
         double _min = -100;
         double _pre_error;
