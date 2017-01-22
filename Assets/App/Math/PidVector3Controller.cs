@@ -1,24 +1,49 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using UnityEngine;
 
-using UnityEngine;
-using UnityEngine.Assertions;
-
-namespace App
+namespace App.Math
 {
-	public class PidVector3Controller : MonoBehaviour
+    public class PidVector3Controller : MonoBehaviour
 	{
-		public Vector3 Target;
-		public float P;
-		public float I;
-		public float D;
+		public Vector3 SetPoint;
+		public float Kp;
+		public float Ki;
+		public float Kd;
 
-		public float Calculate(Vector3 error, float dt)
+		public Vector3 Calculate(Vector3 pv, float dt)
 		{
-			return 0;
+			// Calculate error
+			float error = (SetPoint - pv).magnitude;
+
+			// Proportional term
+			float Pout = Kp * error;
+
+			// Integral term
+			_integral += error * dt;
+			float Iout = Ki * _integral;
+
+			// Derivative term
+			float derivative = (error - _pre_error) / dt;
+			float Dout = Kd * derivative;
+
+			// Calculate total output
+			float output = Pout + Iout + Dout;
+
+			// Restrict to max/min
+			if( output > _max )
+				output = _max;
+			else if( output < _min )
+				output = _min;
+
+			// Save error to previous error
+			_pre_error = error;
+
+			return output;
 		}
+
+        float _max = 100;
+        float _min = -100;
+        float _pre_error;
+        float _integral;
 	}
 }
 

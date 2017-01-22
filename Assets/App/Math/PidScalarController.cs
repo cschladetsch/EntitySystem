@@ -5,11 +5,11 @@ namespace App.Math
 {
     public class PidScalarController : MonoBehaviour
 	{
-		public double SetPoint;
+		public float SetPoint;
 
-		public double Kp = .1;
-		public double Ki = .05;
-		public double Kd = .01;
+		public float Kp = .1f;
+		public float Ki = .05f;
+		public float Kd = .01f;
 
 		/// <summary>
 		/// Calculate output from controller. 
@@ -18,24 +18,24 @@ namespace App.Math
 		/// <param name="pv">the current value, with feedback error</param>
 		/// <param name="dt">time since last calculation</param>
 		/// <returns></returns>
-		private double Calculate(double pv, double dt)
+		private float Calculate(float pv, float dt)
 		{
 			// Calculate error
-			double error = SetPoint - pv;
+			float error = SetPoint - pv;
 
 			// Proportional term
-			double Pout = Kp * error;
+			float Pout = Kp * error;
 
 			// Integral term
 			_integral += error * dt;
-			double Iout = Ki * _integral;
+			float Iout = Ki * _integral;
 
 			// Derivative term
-			double derivative = (error - _pre_error) / dt;
-			double Dout = Kd * derivative;
+			float derivative = (error - _pre_error) / dt;
+			float Dout = Kd * derivative;
 
 			// Calculate total output
-			double output = Pout + Iout + Dout;
+			float output = Pout + Iout + Dout;
 
 			// Restrict to max/min
 			if( output > _max )
@@ -51,17 +51,17 @@ namespace App.Math
 
 		private void FixedUpdate()
 		{
-			double val = (double)transform.position.z;
+			float val = (float)transform.position.z;
 			var inc = Calculate(val, Time.fixedDeltaTime);
 
 			// Debug.LogFormat("{2}: val:{0}, inc:{1}", val.ToString("F3"), inc.ToString("F3"), _count++);
 			transform.position = new Vector3(0,0, (float)(val + inc));
 		}
 
-        double _max = 100;
-        double _min = -100;
-        double _pre_error;
-        double _integral;
+        float _max = 100;
+        float _min = -100;
+        float _pre_error;
+        float _integral;
 	}
 }
 
