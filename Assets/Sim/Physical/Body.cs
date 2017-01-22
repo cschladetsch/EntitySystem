@@ -15,6 +15,8 @@ namespace Sim.Physical
 {
 	public class Body : EntityComponent
 	{
+		public Vector3 Gravity = new Vector3(0,0,0);
+		public float Mass = 1;
 		public List<Mental.Connection> Connections { get { return _connections; } }
 
 		public Frame? LocalFrame;
@@ -37,8 +39,13 @@ namespace Sim.Physical
 			}
 		}
 
-		// Process connections published by the perceptions component 
-		IEnumerator ConsumeDetection(IGenerator self, IChannel<Detection> channel)
+        internal void AddImpulseForce(Vector3 force)
+        {
+            _totalImpulseForce += force;
+        }
+
+        // Process connections published by the perceptions component 
+        IEnumerator ConsumeDetection(IGenerator self, IChannel<Detection> channel)
 		{
 			while (channel.Active)
 			{
@@ -71,7 +78,36 @@ namespace Sim.Physical
 			return go.GetComponent<Body>();
 		}
 
+		private void FixedUpdate()
+		{
+			var dt = UnityEngine.Time.fixedDeltaTime;
+
+			var force = ApplyImpulseForce() + ApplyConstantForce();
+			_acceration = force/Mass;
+			_velocity += _acceration*dt;
+			_position += _velocity*dt;
+
+			transform.position = _position;
+		}
+
+		private Vector3 ApplyImpulseForce()
+		{
+			var f = _totalImpulseForce;
+			_totalImpulseForce = Vector3.zero;
+			return f;
+		}
+		
+		Vector3 ApplyConstantForce()
+		{
+			return Gravity;
+		}
 		// Connections maintained to other Bodies. Each Connection maintains a collection of Detections.
 		private List<Connection> _connections = new List<Connection>();
+
+		private Vector3 _position;
+		private Vector3 _velocity;
+		private Vector3 _acceration;
+		private Vector3 _totalImpulseForce;
+		private Vector3 _totalConstantForce;
 	}
 }

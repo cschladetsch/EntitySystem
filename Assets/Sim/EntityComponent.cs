@@ -17,7 +17,12 @@ namespace Sim
 
 		private void Start()
 		{
+			_entity = GetComponent<Entity>();
+			if (_entity != null)
+				return;
+
 			_entity = GetComponentInParent<Entity>();
+			Assert.IsNotNull(_entity, "All entity components must have an Entity ancestor");
 			Begin();
 		}
 
