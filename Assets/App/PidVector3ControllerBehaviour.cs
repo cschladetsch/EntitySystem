@@ -12,7 +12,7 @@ namespace App
 {
 	public class PidVector3ControllerBehaviour : MonoBehaviour
 	{
-		public Vector3 Target;
+		public Vector3 SetPoint;
 
 		// TODO: may want different co-efficients for the different axes
 		public float P = 0.1f;
@@ -22,13 +22,13 @@ namespace App
 		private void Awake()
 		{
 			_controller = new PidVector3Controller(P, I, D);
-			_controller.SetPoint = Target;
 		}
 
 		private void FixedUpdate()
 		{
-			var output = _controller.Calculate(transform.position, Time.fixedDeltaTime);
-			transform.position = output;
+			var offset = _controller.Calculate(SetPoint, transform.position, 0.1f);
+			var p = transform.position;
+			transform.position = p + offset;
 		}
 
 		private PidVector3Controller _controller;
