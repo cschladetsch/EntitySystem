@@ -6,17 +6,18 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+using UniRx;
+
 namespace App
 {
 	public class PidScalarControllerBehaviour : MonoBehaviour
 	{
-		public float SetPoint;
-		public float P = 0.5f;
-		public float I = 0.05f;
-		public float D = 0.1f;
+		public float SetPoint = 0;
+		public float P, I, D;
+
 		private void Awake()
 		{
-			_controller = new App.Math.PidScalarController(P, I, D); 
+			 _controller = new App.Math.PidScalarController(P, I, D); 
 		}
 
 		private void Start()
