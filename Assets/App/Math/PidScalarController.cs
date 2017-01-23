@@ -74,8 +74,8 @@ namespace App.Math
 		// 	transform.position = new Vector3(0,0, (float)(val + inc));
 		// }
 
-        float _max = 100;
-        float _min = -100;
+        float _max = 20;
+        float _min = -20;
         float _lastError;
         float _integral;
 	}

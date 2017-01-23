@@ -13,11 +13,13 @@ namespace App
 	public class PidScalarControllerBehaviour : MonoBehaviour
 	{
 		public float SetPoint = 0;
-		public float P, I, D;
+		public float P { get { return _controller.P;} set { _controller.P = value; } }
+		public float I { get { return _controller.I;} set { _controller.I = value; } }
+		public float D { get { return _controller.D;} set { _controller.D = value; } }
 
 		private void Awake()
 		{
-			 _controller = new App.Math.PidScalarController(P, I, D); 
+			 _controller = new App.Math.PidScalarController();
 		}
 
 		private void Start()
