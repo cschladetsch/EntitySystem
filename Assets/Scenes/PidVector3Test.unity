@@ -101,6 +101,7 @@ GameObject:
   - 33: {fileID: 220081311}
   - 65: {fileID: 220081310}
   - 23: {fileID: 220081309}
+  - 114: {fileID: 220081313}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -116,8 +117,8 @@ MeshRenderer:
   m_GameObject: {fileID: 220081308}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_MotionVectors: 1
+  m_ReceiveShadows: 0
+  m_MotionVectors: 0
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
@@ -163,12 +164,27 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 220081308}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 10, z: 20}
+  m_LocalPosition: {x: 50, y: 50, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &220081313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 220081308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e96e6bd5d85144959f43f6c8d42b26f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {x: 0, y: 0, z: 0}
+  P: 0.1
+  I: 0.5
+  D: 0.01
 --- !u!1 &1365140606
 GameObject:
   m_ObjectHideFlags: 0

@@ -204,13 +204,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1419626012}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d9bcd4b8bbfa4281be0ea5bcc7544b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 7d7772291815342e0967626fc68fd0dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SetPoint: 0
-  Kp: 0.1
-  Ki: 0.01
-  Kd: 0
+  P: 0.1
+  I: 0.5
+  D: 0.01
 --- !u!23 &1419626014
 MeshRenderer:
   m_ObjectHideFlags: 0
