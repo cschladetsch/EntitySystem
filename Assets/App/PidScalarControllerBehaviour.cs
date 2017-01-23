@@ -13,9 +13,11 @@ namespace App
 	public class PidScalarControllerBehaviour : MonoBehaviour
 	{
 		public float SetPoint = 0;
-		public float P { get { return _controller.P;} set { _controller.P = value; } }
-		public float I { get { return _controller.I;} set { _controller.I = value; } }
-		public float D { get { return _controller.D;} set { _controller.D = value; } }
+		// public float P { get { return _controller.P;} set { _controller.P = value; } }
+		// public float I { get { return _controller.I;} set { _controller.I = value; } }
+		// public float D { get { return _controller.D;} set { _controller.D = value; } }
+
+		public float P, I, D;
 
 		private void Awake()
 		{
@@ -32,7 +34,11 @@ namespace App
 
 		private void FixedUpdate()
 		{
-			var offset = _controller.Calculate(SetPoint, transform.position.z, 0.1f);
+			_controller.P = P;
+			_controller.P = I;
+			_controller.P = D;
+			
+			var offset = _controller.Calculate(SetPoint, transform.position.z, Time.fixedDeltaTime);
 			if (_count < 100)
 				Debug.LogFormat("[{0}]: val:{1}, inc: {2}", _count++, transform.position.z, offset.ToString("F3"));
 

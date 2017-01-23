@@ -27,6 +27,7 @@ namespace App.Math
 			D = d;
 		}
 
+		
 		/// <summary>
 		/// Calculate output from controller. 
 		/// </summary>
@@ -54,6 +55,8 @@ namespace App.Math
 			// Calculate total output
 			float output = Pout + Iout + Dout;
 
+			// Debug.LogFormat("P={0}, I={1}, D={2}, sum={3}", Pout, Iout, Dout, output);
+
 			// Restrict to max/min
 			output = Mathf.Clamp(output, _min, _max);
 
@@ -74,8 +77,8 @@ namespace App.Math
 		// 	transform.position = new Vector3(0,0, (float)(val + inc));
 		// }
 
-        float _max = 20;
-        float _min = -20;
+        float _max = 200;
+        float _min = -200;
         float _lastError;
         float _integral;
 	}

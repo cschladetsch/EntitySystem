@@ -27,10 +27,10 @@ namespace App
 
 		private void Start()
 		{
-			_pidView = Instantiate<PIDControllerView>(ControllerPrefab);
-			Assert.IsNotNull(_pidView);
-			_pidView.Configure(Controlled);
-			_pidView.transform.SetParent(UiRoot.transform, false);
+			// _pidView = Instantiate<PIDControllerView>(ControllerPrefab);
+			// Assert.IsNotNull(_pidView);
+			// _pidView.Configure(Controlled);
+			// _pidView.transform.SetParent(UiRoot.transform, false);
 		}
 
 		private void Update()
