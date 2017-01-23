@@ -2,48 +2,43 @@
 
 namespace App.Math
 {
-    public class PidVector3Controller : MonoBehaviour
+    public class PidVector3Controller
 	{
 		public Vector3 SetPoint;
 		public float Kp;
 		public float Ki;
 		public float Kd;
 
-		public Vector3 Calculate(Vector3 pv, float dt)
+		public PidVector3Controller()
 		{
-			// Calculate error
-			float error = (SetPoint - pv).magnitude;
-
-			// Proportional term
-			float Pout = Kp * error;
-
-			// Integral term
-			_integral += error * dt;
-			float Iout = Ki * _integral;
-
-			// Derivative term
-			float derivative = (error - _pre_error) / dt;
-			float Dout = Kd * derivative;
-
-			// Calculate total output
-			float output = Pout + Iout + Dout;
-
-			// Restrict to max/min
-			if( output > _max )
-				output = _max;
-			else if( output < _min )
-				output = _min;
-
-			// Save error to previous error
-			_pre_error = error;
-
-			return output;
+			CreateControllers();
 		}
 
-        float _max = 100;
-        float _min = -100;
-        float _pre_error;
-        float _integral;
+		public PidVector3Controller(float p, float i, float d)
+		{
+			Kp = p;
+			Ki = i;
+			Kd = d;
+		}
+
+		public Vector3 Calculate(Vector3 pv, float dt)
+		{
+			float x = _controllers[0].Calculate(pv.x, dt);
+			float y = _controllers[1].Calculate(pv.y, dt);
+			float z = _controllers[2].Calculate(pv.z, dt);
+
+			return new Vector3(x,y,z);
+		}
+
+		void CreateControllers()
+		{
+			_controllers = new[] {
+				new PidScalarController(Kp, Ki, Kd),
+				new PidScalarController(Kp, Ki, Kd),
+				new PidScalarController(Kp, Ki, Kd)
+			};
+		}
+
+		private PidScalarController[] _controllers;	
 	}
 }
-
