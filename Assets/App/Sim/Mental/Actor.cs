@@ -9,7 +9,7 @@ using UnityEngine.Assertions;
 using Flow;
 using CoLib;
 
-namespace Sim.Mental
+namespace App.Sim.Mental
 {
 	public class Actor : TransientBehaviour
 	{

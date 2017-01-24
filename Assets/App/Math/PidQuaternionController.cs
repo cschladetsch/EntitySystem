@@ -11,7 +11,7 @@ namespace App.Math
     /// </remarks>
     public class PidQuaternionController
     {
-        private readonly PidController2[] _internalController;
+        private readonly Legacy.PidController2[] _internalController;
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="PidQuaternionController" /> class.
@@ -33,10 +33,10 @@ namespace App.Math
 
             this._internalController = new[]
                                        {
-                                           new PidController2(kp, ki, kd),
-                                           new PidController2(kp, ki, kd),
-                                           new PidController2(kp, ki, kd),
-                                           new PidController2(kp, ki, kd)
+                                           new Legacy.PidController2(kp, ki, kd),
+                                           new Legacy.PidController2(kp, ki, kd),
+                                           new Legacy.PidController2(kp, ki, kd),
+                                           new Legacy.PidController2(kp, ki, kd)
                                        };
         }
 

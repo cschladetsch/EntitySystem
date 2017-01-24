@@ -1,4 +1,4 @@
-namespace App.Math
+namespace App.Math.Legacy
 {
     using System;
     using UnityEngine;

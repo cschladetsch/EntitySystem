@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 using Flow;
 
-namespace Sim.Mental
+namespace App.Sim.Mental
 {
 	/// <summary>
 	/// Maintains connections to other Bodies.

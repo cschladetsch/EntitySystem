@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace Sim.Physical
+namespace App.Math
 {
     public struct FrameDelta
 	{

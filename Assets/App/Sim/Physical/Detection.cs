@@ -5,7 +5,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Sim.Physical
+using App.Math;
+
+namespace App.Sim.Physical
 {
 	/// <summary>
 	/// A detection of another object in the scene. 

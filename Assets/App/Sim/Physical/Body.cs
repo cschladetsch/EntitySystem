@@ -8,10 +8,11 @@ using UnityEngine.Assertions;
 
 using Flow;
 
-using Sim;
-using Sim.Mental;
+using App.Sim;
+using App.Math;
+using App.Sim.Mental;
 
-namespace Sim.Physical
+namespace App.Sim.Physical
 {
 	public class Body : EntityComponent
 	{

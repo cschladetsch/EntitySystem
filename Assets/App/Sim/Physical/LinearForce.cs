@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 using Flow;
 
-namespace Sim.Physical
+namespace App.Sim.Physical
 {
 	public class LinearForce : EntityComponent
 	{

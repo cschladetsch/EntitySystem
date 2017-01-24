@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Sim
+namespace App.Sim
 {
 	public class LocalBehaviour : Physical.Body
 	{

@@ -7,7 +7,7 @@ using UnityEngine.Assertions;
 
 using Flow;
 
-namespace Sim.Mental
+namespace App.Sim.Mental
 {
 	// the lowest rung in the virtual consciousness of an Agent. it provides
 	// raw sensual detection and sampling of its environment to its Body

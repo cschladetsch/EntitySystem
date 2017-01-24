@@ -6,9 +6,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-using Sim.Physical;
+using App.Math;
+using App.Sim.Physical;
 
-namespace Sim.Mental
+namespace App.Sim.Mental
 {
 	/// <summary>
 	/// A Connection is a set of one or more Detections of another body over a period of time 

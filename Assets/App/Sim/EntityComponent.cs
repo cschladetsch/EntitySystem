@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Sim
+namespace App.Sim
 {
     public class EntityComponent : MonoBehaviour
 	{

@@ -6,12 +6,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-using Sim.Physical;
-using Sim.Mental;
+using App.Sim.Physical;
+using App.Sim.Mental;
 
 using Flow;
 
-namespace Sim
+namespace App.Sim
 {
 	public class Entity : Sim.TransientBehaviour
 	{

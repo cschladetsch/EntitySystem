@@ -1,13 +1,14 @@
 ﻿using System;
 
 using UnityEngine;
+// using UnityEngine.Assertions;
 using Random = UnityEngine.Random;
 
 using NUnit.Framework;
 
-using Sim.Physical;
+using App.Math;
 
-namespace BoidSystemTests
+namespace MathTests
 {
 	[TestFixture]
 	public class TestFrame

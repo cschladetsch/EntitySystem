@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 
 using Flow;
 
-namespace Sim
+namespace App.Sim
 {
 	public class TransientBehaviour : MonoBehaviour, ITransient
 	{

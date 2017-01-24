@@ -4,7 +4,7 @@ using UnityEngine.Assertions;
 
 using Flow;
 
-namespace Sim.Physical
+namespace App.Math
 {
 	/// <summary>
 	/// A frame of reference in time, orientation, and location.

@@ -27,6 +27,7 @@ namespace App.Math
 			D = d;
 		}
 
+		bool _first;
 		
 		/// <summary>
 		/// Calculate output from controller. 
@@ -46,6 +47,12 @@ namespace App.Math
 			// Integral term - this is persistent
 			_integral += error * dt;
 			float Iout = I * _integral;
+
+			// if (_first)
+			// {
+			// 	_lastError = error;
+			// 	_first = false;
+			// }
 
 			// derivative term - this is transient
 			float delta = (error - _lastError);
@@ -67,18 +74,8 @@ namespace App.Math
 		}
 
 		int _count;
-
-		// private void FixedUpdate()
-		// {
-		// 	float val = (float)transform.position.z;
-		// 	var inc = Calculate(val, Time.fixedDeltaTime);
-
-		// 	// Debug.LogFormat("{2}: val:{0}, inc:{1}", val.ToString("F3"), inc.ToString("F3"), _count++);
-		// 	transform.position = new Vector3(0,0, (float)(val + inc));
-		// }
-
-        float _max = 200;
-        float _min = -200;
+        float _max = 100;
+        float _min = -100;
         float _lastError;
         float _integral;
 	}

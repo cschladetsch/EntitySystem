@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace Sim.Physical
+namespace App.Sim.Physical
 {
 	public class Gravition : GlobalBehaviour
 	{

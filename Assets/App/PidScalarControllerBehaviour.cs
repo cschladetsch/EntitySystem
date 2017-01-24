@@ -30,15 +30,11 @@ namespace App
 
 		private void Update()
 		{
-		}
-
-		private void FixedUpdate()
-		{
 			_controller.P = P;
-			_controller.P = I;
-			_controller.P = D;
+			_controller.I = I;
+			_controller.D = D;
 			
-			var offset = _controller.Calculate(SetPoint, transform.position.z, Time.fixedDeltaTime);
+			var offset = _controller.Calculate(SetPoint, transform.position.z, 1.0f/10.0f);//Time.fixedDeltaTime);
 			if (_count < 100)
 				Debug.LogFormat("[{0}]: val:{1}, inc: {2}", _count++, transform.position.z, offset.ToString("F3"));
 
