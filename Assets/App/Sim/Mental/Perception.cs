@@ -23,7 +23,7 @@ namespace App.Sim.Mental
 		private SphereCollider _collider;
 		private int _collideLayers;
 
-		protected override void Construct()
+		public override void Construct()
 		{
 			base.Construct();
 
@@ -41,7 +41,7 @@ namespace App.Sim.Mental
 			return result;
 		}
 
-		protected override void Begin()
+		public override void Begin()
 		{
 			base.Begin();
 

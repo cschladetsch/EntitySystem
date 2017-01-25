@@ -9,53 +9,53 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1000010611238004}
+  m_RootGameObject: {fileID: 1000010457873120}
   m_IsPrefabParent: 1
---- !u!1 &1000010611238004
+--- !u!1 &1000010457873120
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 4000012870466120}
-  - 114: {fileID: 114000011726863630}
-  m_Layer: 0
-  m_Name: ForceDemo (1)
+  - 4: {fileID: 4000011590693436}
+  - 114: {fileID: 114000011932725550}
+  m_Layer: 11
+  m_Name: Bird1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4000012870466120
+--- !u!4 &4000011590693436
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010611238004}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: 0}
+  m_GameObject: {fileID: 1000010457873120}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.84, z: 1.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &114000011726863630
+--- !u!114 &114000011932725550
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010611238004}
+  m_GameObject: {fileID: 1000010457873120}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbdb5f15afc4441c59cd92741085cbcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Id: 0
-  BodyPrefab: {fileID: 1000013296956130, guid: 5c4400509b6844bbfb83963a08ebf542, type: 2}
+  BodyPrefab: {fileID: 1000014281360888, guid: e20652682ab0d4f669b1ee149ba5827a, type: 2}
   PerceptionsPrefab: {fileID: 1000011742833804, guid: 3edcbbcc92f4340c086f4a0306f61cf8,
     type: 2}
-  MindPrefab: {fileID: 0}
+  MindPrefab: {fileID: 1000013555057206, guid: 264717aaba4f34c369f3a43b1fa69d0f, type: 2}
   AgentPrefab: {fileID: 0}
   ActorPrefab: {fileID: 0}
   Body: {fileID: 0}

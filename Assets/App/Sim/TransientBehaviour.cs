@@ -10,14 +10,22 @@ namespace App.Sim
 {
 	public class TransientBehaviour : MonoBehaviour, ITransient
 	{
-		public IKernel Kernel { get { return _kernel; } set { _kernel = value; } }
-		public IFactory Factory { get { return _kernel.Factory; } }
+		public Entity Entity { get { return _entity; } }
+		public IKernel Kernel { get { return Entity.Kernel; } set { Entity.Kernel = value; } }
+		public IFactory Factory { get { return Kernel.Factory; } }
+
         public event TransientHandler Completed;
         public event TransientHandlerReason WhyCompleted;
         public event NamedHandler NewName;
 
         public bool Active { get { return _active; } }
         public string Name { get { return name; } set { name = value; } }
+
+		protected void StartNow(Entity ent)
+		{
+			_entity = ent;
+			Debug.LogFormat("TransientBehaviour.StartNew {0} {1}", Kernel, Factory);
+		}
 
 		private void OnDestroy()
 		{
@@ -60,7 +68,7 @@ namespace App.Sim
             Factory.NewTimer(span).Elapsed += (tr) => Complete();
         }
 
-        private IKernel _kernel = Create.NewKernel();
+		private Entity _entity;
 		private bool _active = true;
 	}
 }

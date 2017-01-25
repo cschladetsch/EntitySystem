@@ -19,7 +19,7 @@ namespace App.Sim.Mental
 	/// </summary>
 	public class Mind : EntityComponent
 	{
-		protected override void Begin()
+		public override void Begin()
 		{
 			base.Begin();
 

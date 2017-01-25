@@ -18,11 +18,12 @@ namespace App
 
 		private void Start()
 		{
-			var ent0 = Simulation.Create<Sim.Entity>(0);
-			Debug.Log(ent0.name);
+			// var ent0 = Simulation.Create<Sim.Entity>(0);
+			// Debug.Log(ent0.name);
+			// ent0.transform.position = new Vector3(0,10,0);
 
 			var ent1 = Simulation.Create<Sim.Entity>(1);
-			Debug.Log(ent1.name);
+			ent1.transform.position = new Vector3(0,10,0);
 		}
 
 		private void Update()

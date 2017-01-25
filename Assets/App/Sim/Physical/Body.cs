@@ -22,12 +22,7 @@ namespace App.Sim.Physical
 
 		public Frame? LocalFrame;
 
-		protected override void Construct()
-		{
-			base.Construct();
-		}
-
-		protected override void Begin()
+		public override void Begin()
 		{
 			base.Begin();
 
@@ -79,7 +74,7 @@ namespace App.Sim.Physical
 			return go.GetComponent<Body>();
 		}
 
-		private void FixedUpdate()
+		private void NotFixedUpdate()
 		{
 			var dt = UnityEngine.Time.fixedDeltaTime;
 

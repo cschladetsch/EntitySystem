@@ -32,15 +32,23 @@ namespace App.Sim
 		public Agent Agent;
 		public Actor Actor;
 
-		private void Awake()
+		private void Start()
 		{
+			_kernel = Create.NewKernel();
+			_kernel.Root.Add(this);
+
+			// start the inherited TransientBehaviour
+			StartNow(this);
+
 			AddComponenets(MindPrefab, PerceptionsPrefab, BodyPrefab);
 
 			Mind = GetComponentInChildren<Mind>();
 			Perception = GetComponentInChildren<Perception>();
 			Body = GetComponentInChildren<Body>();
 
-			Kernel.Root.Add(this);
+			// start all components that derive from EntityComponent
+			foreach (var comp in GetComponentsInChildren<EntityComponent>())
+				comp.StartNow(this);
 		}
 
 		private void AddComponenets(params GameObject[] prefabs)
@@ -51,6 +59,13 @@ namespace App.Sim
 
 				var comp = Instantiate(prefab);
 				comp.transform.SetParent(transform, false);
+
+				var part = comp.GetComponent<EntityComponent>();
+				if (part != null)
+				{
+					Debug.LogFormat("{0}.{1}: Start", name, part.GetType().Name);
+					part.Construct();
+				}
 			}
 		}
 
@@ -64,17 +79,16 @@ namespace App.Sim
             return Id;
         }
 
-		private void Start()
-		{
-		}
-
 		private void Update()
 		{
 		}
 
 		private void FixedUpdate()
 		{
+			_kernel.Update(Time.fixedDeltaTime);
 		}
+
+        private IKernel _kernel;
 	}
 }
 

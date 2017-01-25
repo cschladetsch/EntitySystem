@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TraceLevel: 0
-  Gravity: {x: 0, y: -10, z: 0}
+  Gravity: {x: 0, y: 0, z: 0}
   Mass: 1
 --- !u!135 &135000010000875460
 SphereCollider:

@@ -17,7 +17,7 @@ namespace App.Sim.Physical
 		public float Magnitude = 10;
 		public float TimeSpan = 1;
 
-		override protected void Begin()
+		override public void Begin()
 		{
 			Attach(Factory.NewCoroutine(Apply));
 		}
