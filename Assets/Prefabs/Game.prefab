@@ -27,6 +27,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1000011096650706
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013353456036}
+  - 114: {fileID: 114000013028485748}
+  m_Layer: 0
+  m_Name: DistanceTool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1000012150381052
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,6 +90,7 @@ Transform:
   m_Children:
   - {fileID: 4000011427054520}
   - {fileID: 4000014127168238}
+  - {fileID: 4000013353456036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &4000011427054520
@@ -89,6 +106,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4000011239577596}
   m_RootOrder: 0
+--- !u!4 &4000013353456036
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011096650706}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.21, y: 10.1, z: -8.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 4000011239577596}
+  m_RootOrder: 2
 --- !u!4 &4000014127168238
 Transform:
   m_ObjectHideFlags: 1
@@ -174,3 +204,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340ade91e093644c9b3d7361ded8e4a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114000013028485748
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011096650706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf10c9e8e8461403eae9e48b0bc3670e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceToolName: Distance Tool 1
+  lineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  initialized: 1
+  initialName: Distance Tool 1
+  startPoint: {x: -25.115318, y: 0, z: -25.05589}
+  endPoint: {x: -21.991962, y: 1, z: 22.109814}
+  distance: 0
+  gizmoRadius: 1
+  scaleToPixels: 0
+  pixelPerUnit: 128
