@@ -13,10 +13,6 @@ namespace App
 	public class PidScalarControllerBehaviour : MonoBehaviour
 	{
 		public float SetPoint = 0;
-		// public float P { get { return _controller.P;} set { _controller.P = value; } }
-		// public float I { get { return _controller.I;} set { _controller.I = value; } }
-		// public float D { get { return _controller.D;} set { _controller.D = value; } }
-
 		public float P, I, D;
 
 		private void Awake()
@@ -28,7 +24,7 @@ namespace App
 		{
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			_controller.P = P;
 			_controller.I = I;

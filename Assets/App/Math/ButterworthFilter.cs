@@ -19,14 +19,13 @@ namespace App.Math
 		/// <summary>
 		/// Construct a butterworth filter 
 		/// </summary>
-		/// <param name="frequency">the pass frequency</param>
+		/// <param name="frequency">the cut-off band frequency</param>
 		/// <param name="sampleRate">the sample rate between updates</param>
 		/// <param name="passType">high or low-pass</param>
 		/// <param name="resonance"></param>
 		public ButterworthFilter(float frequency, int sampleRate, PassType passType, float resonance)
 		{
 			_resonance = resonance;
-			_frequency = frequency;
 			_sampleRate = sampleRate;
 			_passType = passType;
 
@@ -73,7 +72,6 @@ namespace App.Math
 		/// rez amount, from sqrt(2) to ~ 0.1
 		/// </summary>
 		private readonly float _resonance;
-		private readonly float _frequency;
 		private readonly int _sampleRate;
 		private readonly PassType _passType;
 		private readonly float c, a1, a2, a3, b1, b2;
