@@ -14,7 +14,7 @@ namespace App.Sim.Mental
 	/// <summary>
 	/// A Connection is a set of one or more Detections of another body over a period of time 
 	/// </summary>
-	public class Connection : MonoBehaviour
+	public class Connection
 	{
 		// the entity maintaining the connection
 		public Perception Perceiever;

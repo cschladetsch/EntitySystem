@@ -22,7 +22,7 @@ namespace App
 			// Debug.Log(ent0.name);
 			// ent0.transform.position = new Vector3(0,10,0);
 
-			var ent1 = Simulation.Create<Sim.Entity>(1);
+			var ent1 = Simulation.Create<Sim.Entity>(0);
 			ent1.transform.position = new Vector3(0,10,0);
 		}
 
