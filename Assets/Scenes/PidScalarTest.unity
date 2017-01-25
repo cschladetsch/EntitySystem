@@ -347,8 +347,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SetPoint: 0
-  P: 0.9
-  I: 0.3
+  P: 0.1
+  I: 0.5
   D: 0.01
 --- !u!23 &1419626014
 MeshRenderer:

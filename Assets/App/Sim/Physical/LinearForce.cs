@@ -24,7 +24,7 @@ namespace App.Sim.Physical
 
 		IEnumerator Apply(IGenerator self)
 		{
-			var interval = TimeSpan;
+			// var interval = TimeSpan;
 			var scale = 1.0f/TimeSpan;
 			var time = 0.0f;
 			while (time < TimeSpan)

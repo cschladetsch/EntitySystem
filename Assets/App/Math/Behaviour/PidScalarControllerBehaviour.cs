@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 using UniRx;
 
-namespace App
+namespace App.Math
 {
 	public class PidScalarControllerBehaviour : MonoBehaviour
 	{
@@ -17,7 +17,7 @@ namespace App
 
 		private void Awake()
 		{
-			 _controller = new App.Math.PidScalarController();
+			 _controller = new PidScalarController();
 		}
 
 		private void Start()
@@ -37,10 +37,13 @@ namespace App
 			var p = transform.position;
 			var val = p.z + (float)offset;
 			transform.position = new Vector3(p.x, p.y, val);
+
+			DebugGraph.Log("offset", offset);
+			DebugGraph.Log("val", val);
 		}
 		int _count;
 
-		private App.Math.PidScalarController _controller;
+		private PidScalarController _controller;
 	}
 }
 

@@ -8,7 +8,7 @@ using UnityEngine.Assertions;
 
 using App.Math;
 
-namespace App
+namespace App.Math
 {
 	public class PidVector3ControllerBehaviour : MonoBehaviour
 	{

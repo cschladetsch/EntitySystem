@@ -25,10 +25,6 @@ namespace App.Math
 		/// <param name="resonance"></param>
 		public ButterworthFilter(float frequency, int sampleRate, PassType passType, float resonance)
 		{
-			_resonance = resonance;
-			_sampleRate = sampleRate;
-			_passType = passType;
-
 			switch (passType)
 			{
 				case PassType.Lowpass:
@@ -71,9 +67,6 @@ namespace App.Math
 		/// <summary>
 		/// rez amount, from sqrt(2) to ~ 0.1
 		/// </summary>
-		private readonly float _resonance;
-		private readonly int _sampleRate;
-		private readonly PassType _passType;
 		private readonly float c, a1, a2, a3, b1, b2;
 
 		/// <summary>
@@ -85,6 +78,5 @@ namespace App.Math
 		/// Array of output values, latest are in front
 		/// </summary>
 		private float[] _outputHistory = new float[3];
-
 	}
 }
