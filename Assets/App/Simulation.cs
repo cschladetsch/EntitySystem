@@ -7,22 +7,27 @@ namespace App.Sim
 {
     public class Simulation : MonoBehaviour
 	{
+		public int Trace = 0;
 		public GameObject[] Prefabs;
 
 		private void Awake()
 		{
+			if (Trace > 2) Debug.Log("Simulation.Awake");
 		}
 
 		private void Start()
 		{
+			if (Trace > 2) Debug.Log("Simulation.Start");
 		}
 
 		private void Update()
 		{
+			if (Trace > 2) Debug.Log("Simulation.Update");
 		}
 
 		private void FixedUpdate()
 		{
+			if (Trace > 2) Debug.Log("Simulation.Fixed");
 		}
 
 		public T Create<T>(int prefabIndex) where T : Component

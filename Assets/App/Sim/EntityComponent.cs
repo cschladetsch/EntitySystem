@@ -12,12 +12,15 @@ namespace App.Sim
 
 		public void StartNow(Entity ent)
 		{
-			_entity = ent;
 		}
 
 		private void Awake()
 		{
 			Construct();
+			_entity = GetComponentInParent<Entity>();
+			Assert.IsNotNull(_entity);
+
+			// Construct();
 		}
 
 		private void Start()

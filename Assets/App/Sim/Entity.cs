@@ -13,13 +13,14 @@ using Flow;
 
 namespace App.Sim
 {
-	public class Entity : Sim.TransientBehaviour
+	public class Entity : MonoBehaviour, ITransient
 	{
-		/// <summary>
-		/// Unique id given to each entity 
-		/// </summary>
-		public int Id;
+		public IKernel Kernel { get { return _kernel; } set { _kernel = value; } }
+		public IFactory Factory { get { return _kernel.Factory; } }
+        public bool Active { get { return _active; } }
+        public string Name { get { return name; } set { name = value; } }
 
+		public int Id;
 		public GameObject BodyPrefab;
 		public GameObject PerceptionsPrefab;
 		public GameObject MindPrefab;
@@ -32,23 +33,24 @@ namespace App.Sim
 		public Agent Agent;
 		public Actor Actor;
 
+        public event TransientHandler Completed;
+        public event TransientHandlerReason WhyCompleted;
+        public event NamedHandler NewName;
+
+		private void Awake()
+		{
+			_kernel = Flow.Create.NewKernel();
+			_kernel.Root.Add(this);
+			_active = true;
+		}
+
 		private void Start()
 		{
-			_kernel = Create.NewKernel();
-			_kernel.Root.Add(this);
-
-			// start the inherited TransientBehaviour
-			StartNow(this);
-
 			AddComponenets(MindPrefab, PerceptionsPrefab, BodyPrefab);
 
 			Mind = GetComponentInChildren<Mind>();
 			Perception = GetComponentInChildren<Perception>();
 			Body = GetComponentInChildren<Body>();
-
-			// start all components that derive from EntityComponent
-			foreach (var comp in GetComponentsInChildren<EntityComponent>())
-				comp.StartNow(this);
 		}
 
 		private void AddComponenets(params GameObject[] prefabs)
@@ -69,6 +71,47 @@ namespace App.Sim
 			}
 		}
 
+		private void OnDestroy()
+		{
+			if (Active)
+				Complete();
+		}
+
+        public void Complete()
+        {
+			if (Active)
+			{
+				if (Completed != null)
+					Completed(this);
+				_active = false;
+			}
+
+			if (gameObject != null)
+            	Destroy(gameObject);
+
+			// deletion chains can take another Kernel step to propagate
+			Kernel.Step();
+			var contents = Kernel.Root.Contents;
+			Assert.AreEqual(contents.Count(), 0, "Object: " + name);
+			if (contents.Count() > 0)
+			{
+				foreach (var c in contents)
+				{
+					Debug.LogWarningFormat("Dangling: name={0}, type{1}", c.Name, c.GetType().Name);
+				}
+			}
+        }
+
+        public void CompleteAfter(ITransient other)
+        {
+			other.Completed += (tr) => Complete();
+        }
+
+        public void CompleteAfter(TimeSpan span)
+        {
+            Factory.NewTimer(span).Elapsed += (tr) => Complete();
+        }
+
 		public override bool Equals(object x)
         {
             return (x as Entity).Id == Id;
@@ -88,6 +131,7 @@ namespace App.Sim
 			_kernel.Update(Time.fixedDeltaTime);
 		}
 
+		private bool _active = true;
         private IKernel _kernel;
 	}
 }

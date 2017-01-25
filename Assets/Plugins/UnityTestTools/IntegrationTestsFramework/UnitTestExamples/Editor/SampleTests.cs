@@ -6,9 +6,8 @@ using UnityEngine;
 
 namespace UnityTest
 {
-    // [TestFixture]
-    // [Category("Sample Tests")]
-    // [Ignore("Ignored test")]
+    [TestFixture]
+    [Category("Sample Tests")]
     internal class SampleTests
     {
         [Test]
