@@ -10,21 +10,21 @@ namespace App.Sim.Physical
 {
 	public class Wind : LocalBehaviour
 	{
-		private void Awake()
-		{
-		}
+		// private void Awake()
+		// {
+		// }
 
-		private void Start()
-		{
-		}
+		// private void Start()
+		// {
+		// }
 
-		private void Update()
-		{
-		}
+		// private void Update()
+		// {
+		// }
 
-		private void FixedUpdate()
-		{
-		}
+		// private void FixedUpdate()
+		// {
+		// }
 	}
 }
 

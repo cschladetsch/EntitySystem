@@ -39,21 +39,21 @@ namespace App.Sim
 
 		private void Awake()
 		{
+			CreateKernel();
+
+			AddComponents();
+
+			ForeachEntityComponent((c) => c.Construct(this));
+		}
+
+		void CreateKernel()
+		{
 			_kernel = Flow.Create.NewKernel();
 			_kernel.Root.Add(this);
 			_active = true;
 		}
 
-		private void Start()
-		{
-			AddComponenets(MindPrefab, PerceptionsPrefab, BodyPrefab);
-
-			Mind = GetComponentInChildren<Mind>();
-			Perception = GetComponentInChildren<Perception>();
-			Body = GetComponentInChildren<Body>();
-		}
-
-		private void AddComponenets(params GameObject[] prefabs)
+		private void AddComponents(params GameObject[] prefabs)
 		{
 			foreach (var prefab in prefabs)
 			{
@@ -65,9 +65,28 @@ namespace App.Sim
 				var part = comp.GetComponent<EntityComponent>();
 				if (part != null)
 				{
-					Debug.LogFormat("{0}.{1}: Start", name, part.GetType().Name);
-					part.Construct();
+					Debug.LogFormat("{0}.{1}: Construct", name, part.GetType().Name);
+					part.Construct(this);
 				}
+			}
+		}
+
+		private void Start()
+		{
+			AddComponents(MindPrefab, PerceptionsPrefab, BodyPrefab);
+
+			Mind = GetComponentInChildren<Mind>();
+			Perception = GetComponentInChildren<Perception>();
+			Body = GetComponentInChildren<Body>();
+
+			ForeachEntityComponent((c) => c.Begin());
+		}
+
+		void ForeachEntityComponent(System.Action<EntityComponent> fun) 
+		{
+			foreach (var entityComponent in GetComponentsInChildren<EntityComponent>())
+			{
+				fun(entityComponent);
 			}
 		}
 
@@ -121,10 +140,6 @@ namespace App.Sim
         {
             return Id;
         }
-
-		private void Update()
-		{
-		}
 
 		private void FixedUpdate()
 		{

@@ -22,11 +22,19 @@ namespace App.Sim.Physical
 
 		public Frame? LocalFrame;
 
+		public override void Construct(Entity ent)
+		{
+			Debug.Log(gameObject.name + ".Construct: Entity=" + Entity);
+			base.Construct(ent);
+		}
+
 		public override void Begin()
 		{
 			base.Begin();
 
 			// listen for events from perceptions using publish/subscribe model
+			Debug.Log("Entity=" + Entity);
+			Debug.Log("" + name + " , " + Entity.Perception);
 			if (Entity.Perception != null)
 			{
 				var channel = Attach(Factory.NewChannel<Detection>());

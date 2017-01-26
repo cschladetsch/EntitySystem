@@ -76,7 +76,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000011586014532}
-  - 114: {fileID: 114000013520712852}
   m_Layer: 0
   m_Name: Bounds 1
   m_TagString: Untagged
@@ -610,23 +609,3 @@ MonoBehaviour:
   TraceLevel: 0
   Gravity: {x: 0, y: 0, z: 0}
   Mass: 1
---- !u!114 &114000013520712852
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000011282886450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 997245e965bf940a083e643e33e76662, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Id: 0
-  MindPrefab: {fileID: 0}
-  PerceptionsPrefab: {fileID: 0}
-  BodyPrefab: {fileID: 0}
-  Mind: {fileID: 0}
-  Perception: {fileID: 0}
-  Body: {fileID: 0}
-  Mass: 0
-  ImpulseForce: {x: 0, y: 0, z: 0}

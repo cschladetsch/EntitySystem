@@ -23,10 +23,11 @@ namespace App.Sim.Mental
 		private SphereCollider _collider;
 		private int _collideLayers;
 
-		public override void Construct()
+		public override void Construct(Entity ent)
 		{
-			base.Construct();
+			base.Construct(ent);
 
+			_collider = GetComponent<SphereCollider>();
 			_collideLayers = MakeLayerMask("Body", "Boundary", "Obstruction");
 		}
 
@@ -44,8 +45,6 @@ namespace App.Sim.Mental
 		public override void Begin()
 		{
 			base.Begin();
-
-			_collider = GetComponent<SphereCollider>();
 		}
 
 		public IEnumerator PublishDetection(IGenerator self, IChannel<Physical.Detection> channel)

@@ -10,20 +10,9 @@ namespace App.Sim
 {
 	public class LocalBehaviour : Physical.Body
 	{
-		private void Awake()
+		public override void Construct(Entity ent)
 		{
-		}
-
-		private void Start()
-		{
-		}
-
-		private void Update()
-		{
-		}
-
-		private void FixedUpdate()
-		{
+			base.Construct(ent);
 		}
 	}
 }

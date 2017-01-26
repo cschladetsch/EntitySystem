@@ -3,44 +3,25 @@ using UnityEngine.Assertions;
 
 namespace App.Sim
 {
+	/// <summary>
+	/// Base for components that reside inside an Entity 
+	/// </summary>
     public class EntityComponent : MonoBehaviour
 	{
 		public Entity Entity { get { return _entity; } }
 		public Flow.IKernel Kernel { get { return Entity.Kernel; } }
 		public Flow.IFactory Factory { get { return Kernel.Factory; } }
-		public int TraceLevel = 0;
+		static int TraceLevel = 5;
 
-		public void StartNow(Entity ent)
+		public virtual void Construct(Entity ent)
 		{
-		}
-
-		private void Awake()
-		{
-			Construct();
-			_entity = GetComponentInParent<Entity>();
-			Assert.IsNotNull(_entity);
-
-			// Construct();
-		}
-
-		private void Start()
-		{
-			Begin();
-		}
-
-		private void OnDestroy()
-		{
-			if (TraceLevel > 1) Debug.Log("Destroy: " + name);
-		}
-
-		public virtual void Construct()
-		{
-			if (TraceLevel > 2) Debug.Log("Construct: " + name);
+			_entity = ent;
+			if (TraceLevel > 2) Debug.Log("Construct: " + gameObject.name);
 		}
 
 		public virtual void Begin()
 		{
-			if (TraceLevel > 2) Debug.Log("Begin: " + name);
+			if (TraceLevel > 2) Debug.Log("Begin: " + gameObject.name);
 		}
 
 		public Tr Attach<Tr>(Tr transient) where Tr : class, Flow.ITransient
@@ -49,6 +30,11 @@ namespace App.Sim
 
 			Entity.Completed += (tr) => transient.Complete();
 			return transient;
+		}
+
+		private void OnDestroy()
+		{
+			if (TraceLevel > 1) Debug.Log("Destroy: " + name);
 		}
 
 		private Entity _entity;
