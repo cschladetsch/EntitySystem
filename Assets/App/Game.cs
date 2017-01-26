@@ -8,6 +8,8 @@ namespace App
 		public static Game Instance;
 		public static Sim.Simulation Simulation;
 
+		static int TraceLevel = 0;
+
 		private void Awake()
 		{
 			Instance = this;
@@ -19,7 +21,7 @@ namespace App
 		private void Start()
 		{
 			var ent0 = Simulation.Create<Sim.Entity>(0);
-			Debug.Log(ent0.name);
+			if (TraceLevel > 2) Debug.Log(ent0.name);
 			ent0.transform.position = new Vector3(0,0,0);
 
 			// var ent1 = Simulation.Create<Sim.Entity>(0);

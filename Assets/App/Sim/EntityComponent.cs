@@ -11,7 +11,8 @@ namespace App.Sim
 		public Entity Entity { get { return _entity; } }
 		public Flow.IKernel Kernel { get { return Entity.Kernel; } }
 		public Flow.IFactory Factory { get { return Kernel.Factory; } }
-		static int TraceLevel = 5;
+
+		protected static int TraceLevel = 0;
 
 		public virtual void Construct(Entity ent)
 		{

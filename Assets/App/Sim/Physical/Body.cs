@@ -24,7 +24,7 @@ namespace App.Sim.Physical
 
 		public override void Construct(Entity ent)
 		{
-			Debug.Log(gameObject.name + ".Construct: Entity=" + Entity);
+			if (TraceLevel > 1) Debug.Log(gameObject.name + ".Construct: Entity=" + Entity);
 			base.Construct(ent);
 		}
 
@@ -33,8 +33,8 @@ namespace App.Sim.Physical
 			base.Begin();
 
 			// listen for events from perceptions using publish/subscribe model
-			Debug.Log("Entity=" + Entity);
-			Debug.Log("" + name + " , " + Entity.Perception);
+			if (TraceLevel > 2) Debug.Log("Entity=" + Entity);
+			if (TraceLevel > 2) Debug.Log("" + name + " , " + Entity.Perception);
 			if (Entity.Perception != null)
 			{
 				var channel = Attach(Factory.NewChannel<Detection>());

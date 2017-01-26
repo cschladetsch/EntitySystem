@@ -37,6 +37,8 @@ namespace App.Sim
         public event TransientHandlerReason WhyCompleted;
         public event NamedHandler NewName;
 
+		static int TraceLevel = 0;
+
 		private void Awake()
 		{
 			CreateKernel();
@@ -65,7 +67,7 @@ namespace App.Sim
 				var part = comp.GetComponent<EntityComponent>();
 				if (part != null)
 				{
-					Debug.LogFormat("{0}.{1}: Construct", name, part.GetType().Name);
+					if (TraceLevel > 1) Debug.LogFormat("{0}.{1}: Construct", name, part.GetType().Name);
 					part.Construct(this);
 				}
 			}
