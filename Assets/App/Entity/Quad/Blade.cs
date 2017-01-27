@@ -37,21 +37,30 @@ namespace App.Quad
 		{ 
 			get
 			{
-				var dir = -transform.forward;	
+				var dir = -transform.up;	
 				return dir*ForceMag*LiftDir();
+			}
+		}
+
+		public Vector3 ForceDirWorld
+		{
+			get
+			{
+				var dir = transform.InverseTransformVector(Force).normalized;
+				return dir;
 			}
 		}
 
 		public float LiftDir()
 		{
 			if (Spin == ESpinDirection.CW) return -1;
-			return -1;
+			return 1;
 		}
 
 		private void Awake()
 		{
-			TraceLevel = 1;
-			_rigidBody = gameObject.GetComponentInParent<Rigidbody>();
+			TraceLevel = 5;
+			_flightController = GetComponentInParent<FlightController>();
 		}
 
 		private void Start()
@@ -60,12 +69,16 @@ namespace App.Quad
 
 		private void Update()
 		{
-			if (TraceLevel > 1) Debug.DrawLine(transform.position, transform.position + Force.magnitude*5, Color.magenta, 0, false);
+			if (TraceLevel > 1)
+			{
+				Debug.DrawLine(transform.position, transform.position + ForceDirWorld * 5, Color.magenta, 0, false);
+			}
 		}
 
 		private void FixedUpdate()
 		{
-			_rigidBody.AddForceAtPosition(Force, transform.position, ForceMode.Impulse);
+			var force = ForceDirWorld;
+			_flightController.AddForceAtPosition(force, transform.position);
 		}
 
 		public void Stop()
@@ -73,7 +86,7 @@ namespace App.Quad
 			ForceMag = 0;
 		}
 
-		private Rigidbody _rigidBody;
+		private FlightController _flightController;
 	}
 
 	// spinning CW pushes up (applies force down relative to quad)
