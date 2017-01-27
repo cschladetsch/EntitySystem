@@ -61,7 +61,7 @@ namespace App.Sim.Physical
 				var det = next.Value;
 				var body = GetBody(det.Hit);
 				if (body == null) 
-					yield break;
+					continue;
 
 				AddDetection(body, det);
 			}
