@@ -17,8 +17,8 @@ namespace App.Quad
 		// input is from Flight Controller
 		public PidScalarController PidController;
 
-		// absolute scale of output from pid controller
-		public float Gain = 1;
+		// adjustments of output to account for imbalances in COG and so on
+		public float Trim = 1;
 
 		// the magnitude of the force. we won't worry about motor
 		// torque or RPM or angle of blades or blade length.
@@ -33,21 +33,20 @@ namespace App.Quad
 		public static int TraceLevel = 0;
 
 		// the total force that this motor/blade combo provides
-		public Vector3 Force 
+		public Vector3 ForceLocal
 		{ 
 			get
 			{
 				var dir = -transform.up;	
-				return dir*ForceMag*LiftDir();
+				return dir*ForceMag*Trim*LiftDir();
 			}
 		}
 
-		public Vector3 ForceDirWorld
+		public Vector3 ForceWorld
 		{
 			get
 			{
-				var dir = transform.InverseTransformVector(Force).normalized;
-				return dir;
+				return transform.InverseTransformVector(ForceLocal);
 			}
 		}
 
@@ -71,13 +70,13 @@ namespace App.Quad
 		{
 			if (TraceLevel > 1)
 			{
-				Debug.DrawLine(transform.position, transform.position + ForceDirWorld * 5, Color.magenta, 0, false);
+				Debug.DrawLine(transform.position, transform.position + ForceWorld*10, Color.magenta, 0, false);
 			}
 		}
 
 		private void FixedUpdate()
 		{
-			var force = ForceDirWorld;
+			var force = ForceWorld;
 			_flightController.AddForceAtPosition(force, transform.position);
 		}
 
@@ -96,7 +95,5 @@ namespace App.Quad
 		CW,
 		CCW,
 	}
-
-
 }
 

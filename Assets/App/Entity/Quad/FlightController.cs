@@ -58,7 +58,7 @@ namespace App.Quad
 
 			var avgPos = (posSum/num);
 			var avgForce = (forceSum/num)*10;
-			if (TraceLevel > 1) Debug.DrawLine(avgPos, avgPos + avgForce, Color.yellow, 0);
+			if (TraceLevel > 1) Debug.DrawLine(avgPos, avgPos + avgForce*10, Color.yellow, 0);
 
 			Debug.LogFormat("{0} {1} {2}", transform.position, avgPos, avgForce);
 
