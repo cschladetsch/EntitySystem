@@ -14,17 +14,16 @@ namespace App.Quad
 	[RequireComponent(typeof(Rigidbody))]
 	public class FlightController : MonoBehaviour
 	{
-		public Blade FL;
-		public Blade FR;
-		public Blade RL;
-		public Blade RR;
-
-		private Blade[] _allBlades;
+		public Blade FL;		// CW,  Z- spin gives lift
+		public Blade FR;		// CCW, Z+ spin gives lift
+		public Blade RL;		// CCW, Z+ spin gives lift
+		public Blade RR;		// CW,  Z- spin gives lift
 
 		private static int TraceLevel = 5;
 
 		private void Awake()
 		{
+			TraceLevel = 3;
 			_allBlades = new [] { FL, FR, RL, RR };
 			_rigidBody = GetComponent<Rigidbody>();
 			_collider = GetComponent<BoxCollider>();
@@ -58,9 +57,9 @@ namespace App.Quad
 
 			var avgPos = (posSum/num);
 			var avgForce = (forceSum/num)*10;
-			if (TraceLevel > 1) Debug.DrawLine(avgPos, avgPos + avgForce*10, Color.yellow, 0);
 
-			Debug.LogFormat("{0} {1} {2}", transform.position, avgPos, avgForce);
+			if (TraceLevel > 1) Debug.DrawLine(avgPos, avgPos + avgForce*10, Color.yellow, 0);
+			if (TraceLevel > 2) Debug.LogFormat("{0} {1} {2}", transform.position, avgPos, avgForce);
 
 			_impulses.Clear();
 		}
@@ -90,6 +89,7 @@ namespace App.Quad
 			}
 		}
 
+		private Blade[] _allBlades;
 		private Rigidbody _rigidBody;
 		private BoxCollider _collider;
 		private List<AppliedForce> _impulses = new List<AppliedForce>();
