@@ -15,6 +15,7 @@ namespace App
 	{
 		public Vector3[] Points;
 		public int NumInterpolationPoints = 50;
+		public int PolynomialDegree = 3;
 
 		private void Awake()
 		{
@@ -26,15 +27,13 @@ namespace App
 
 		private void Update()
 		{
-			int mx = Points.Length - 1;
-			int my = Points.Length - 1;
+			int mx = PolynomialDegree;
+			int my = PolynomialDegree;
 			float[] xd_1d = new float[mx + 1];
 			float[] yd_1d = new float[my + 1];
-			for (int j = 0; j < mx; ++j)
-			{
-				xd_1d[j] = Points[j].x;
-				yd_1d[j] = Points[j].y;
-			}
+
+			xd_1d = _interp.r8vec_cheby_extreme_new(mx + 1, 0.0f, 1.0f);
+			yd_1d = _interp.r8vec_cheby_extreme_new(my + 1, 0.0f, 1.0f);
 
 			// number of data points
 			int nd = (mx + 1)*(my + 1);

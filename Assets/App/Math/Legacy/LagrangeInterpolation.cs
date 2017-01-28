@@ -120,6 +120,53 @@ namespace App.Math
 
 			return wi; 
 		}
+
+		//****************************************************************************80
+		//
+		//  Purpose:
+		//    R8VEC_CHEBY_EXTERME_NEW creates Chebyshev Extreme values in [A,B].
+		//
+		//  Discussion:
+		//    An R8VEC is a vector of R8's.
+		//  Parameters:
+		//    Input, int N, the number of entries in the vector.
+		//    Input, double A, B, the interval.
+		//    Output, double R8VEC_CHEBY_EXTREME_NEW[N], a vector of Chebyshev spaced data.
+		public float[] r8vec_cheby_extreme_new ( int n, float a, float b )
+		{
+			float c;
+			int i;
+			const float r8_pi = 3.141592653589793f;
+			float theta;
+			float[] x = new float[n];
+
+			if ( n == 1 )
+			{
+				x[0] = ( a + b ) / 2.0f;
+			}
+			else
+			{
+				for ( i = 0; i < n; i++ )
+				{
+					theta = ( float ) ( n - i - 1 ) * r8_pi / ( float ) ( n - 1 );
+
+					c = Mathf.Cos ( theta );
+
+					if ( ( n % 2 ) == 1 )
+					{
+						if ( 2 * i + 1 == n )
+						{
+							c = 0.0f;
+						}
+					}
+
+					x[i] = ( ( 1.0f - c ) * a  
+							+ ( 1.0f + c ) * b ) 
+							/   2.0f;
+				}
+			}
+			return x;
+		}
 	}
 }
 

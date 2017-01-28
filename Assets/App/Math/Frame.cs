@@ -31,6 +31,18 @@ namespace App.Math
 			When = DateTime.Now;
 		}
 
+		public Frame(Vector3 pos, DateTime span)
+			: this(pos)
+		{
+			Orientation = Quaternion.identity;
+			When = span;
+		}
+
+		public Frame(Vector2 pos)
+			: this(new Vector3(pos.x, pos.y, 0))
+		{
+		}
+
 		public Frame(Vector3 pos, Quaternion rot)
 			: this(pos)
 		{
