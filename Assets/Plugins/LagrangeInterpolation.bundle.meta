@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f440fcced11614ca7b0c30864fafd346
-timeCreated: 1485606006
+timeCreated: 1485609398
 licenseType: Pro
 PluginImporter:
   serializedVersion: 1
@@ -36,11 +36,11 @@ PluginImporter:
     OSXIntel:
       enabled: 0
       settings:
-        CPU: AnyCPU
+        CPU: None
     OSXIntel64:
       enabled: 0
       settings:
-        CPU: AnyCPU
+        CPU: None
     OSXUniversal:
       enabled: 0
       settings:
